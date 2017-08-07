@@ -32,6 +32,7 @@ public class QRCodeUtil {
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");// 字符编码
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);// 容错等级 L、M、Q、H 其中 L 为最低, H 为最高
         hints.put(EncodeHintType.MARGIN, 2);// 二维码与图片边距
+        hints.put(EncodeHintType.QR_VERSION, 25); //二维码数据量
     }
     /**
      * 返回一个 BufferedImage 对象
@@ -70,7 +71,7 @@ public class QRCodeUtil {
     public static void main(String[] args) throws WriterException, IOException {
         String filePath = "QRCode.png";
         FileUtils fileUtils = new FileUtils();
-        String qrCodeData = fileUtils.getFile("wavesurfer.js");
+        String qrCodeData = fileUtils.getFile("test.csv");
         createQRCode(qrCodeData, filePath, 300, 300);
 
         System.out.println("QR Code image created successfully!");
