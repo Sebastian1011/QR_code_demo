@@ -1,7 +1,10 @@
 package me.zmzhang.utils;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -23,5 +26,15 @@ public class FileUtils {
             e.printStackTrace();
         }
         return result.toString();
+    }
+    public Path getPath(String fileName){
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        return file.toPath();
+    }
+    public String getFilePath(String fileName){
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        return file.getPath();
     }
 }

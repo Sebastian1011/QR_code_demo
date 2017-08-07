@@ -32,7 +32,7 @@ public class QRCodeUtil {
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");// 字符编码
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);// 容错等级 L、M、Q、H 其中 L 为最低, H 为最高
         hints.put(EncodeHintType.MARGIN, 2);// 二维码与图片边距
-        hints.put(EncodeHintType.QR_VERSION, 25); //二维码数据量
+        hints.put(EncodeHintType.QR_VERSION, 40); //二维码数据量
     }
     /**
      * 返回一个 BufferedImage 对象
