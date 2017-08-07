@@ -57,7 +57,10 @@ public class ChineseUtil {
     }
 
     public static void main(String args[]) throws IOException {
-        String path = new FileUtils().getFilePath("large.csv");
+        File file = new File("large.csv");
+        file.createNewFile();
+        String path = file.getPath();
+
         for (int i = 0; i< 160000; i++){
             String appendStr = getFixedLengthChinese(11) + "," + NumberUtil.getFixLengthNumber(7).toString() + "," + NumberUtil.getFixLengthNumber(7).toString() + "\n";
             System.out.print(appendStr);
