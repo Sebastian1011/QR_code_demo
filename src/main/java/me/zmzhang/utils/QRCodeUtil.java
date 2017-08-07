@@ -92,10 +92,10 @@ public class QRCodeUtil {
 
 
     public static void main(String[] args) {
-//        String filePath = "QRCode.png";
-//        String qrCodeData = FileUtils.getFileContent(new File("test.csv"));
-//        createQRCode(qrCodeData, filePath, 300, 300);
-//        String filePath = "single.png";
+        // String filePath = "QRCode.png";
+        // String qrCodeData = FileUtils.getFileContent(new File("test.csv"));
+        // createQRCode(qrCodeData, filePath, 300, 300);
+        // String filePath = "single.png";
         try{
             String filePath = "multi.png";
             String result = multiDecoder(filePath);
@@ -103,10 +103,6 @@ public class QRCodeUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
         System.out.println("QR Code image created successfully!");
-
-
     }
 }
