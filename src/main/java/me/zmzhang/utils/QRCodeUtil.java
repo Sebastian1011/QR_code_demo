@@ -71,7 +71,7 @@ public class QRCodeUtil {
     public static void main(String[] args) throws WriterException, IOException {
         String filePath = "QRCode.png";
         FileUtils fileUtils = new FileUtils();
-        String qrCodeData = fileUtils.getFile("test.csv");
+        String qrCodeData = FileUtils.getFileContent(new File("test.csv"));
         createQRCode(qrCodeData, filePath, 300, 300);
 
         System.out.println("QR Code image created successfully!");

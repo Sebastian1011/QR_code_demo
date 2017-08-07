@@ -3,13 +3,8 @@ package me.zmzhang.utils;
 /**
  * Created by zmzhang2 on 8/7/17.
  */
-import org.apache.logging.log4j.core.util.NameUtil;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Date;
 import java.util.Random;
 

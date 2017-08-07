@@ -1,13 +1,13 @@
 package me.zmzhang.utils;
 
 import com.google.zxing.WriterException;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -53,7 +53,8 @@ public class ZipUtil {
 
     public static void main(String[] args) throws IOException, WriterException {
         FileUtils fileUtils = new FileUtils();
-        String qrCodeData = fileUtils.getFile("large.csv");
+        File file = new File("large.csv");
+        String qrCodeData = FileUtils.getFileContent(new File("large.csv"));
         String encoded = ZipUtil.encode(qrCodeData);
         String decode = ZipUtil.decode(encoded);
         System.out.print(qrCodeData.getBytes().length);
