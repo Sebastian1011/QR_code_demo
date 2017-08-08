@@ -14,8 +14,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -75,11 +74,19 @@ public class QRCodeUtil {
         MatrixToImageWriter.writeToPath(bitMatrix, format, new File(path).toPath());
     }
 
+    /**
+     * 二维码图片解码
+     * @param filename 图片路径
+     */
     public static String decoder(String filename) throws NotFoundException, IOException {
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(ImageIO.read(new FileInputStream(filename)))));
         Result result = new MultiFormatReader().decode(binaryBitmap, decodeHints);
         return result.getText();
     }
+    /**
+     * 一图多个二维码图片解码
+     * @param filename 图片路径
+     */
     public static String multiDecoder(String filename) throws IOException, FormatException, ChecksumException, NotFoundException {
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(ImageIO.read(new FileInputStream(filename)))));
         Result[] result = new QRCodeMultiReader().decodeMultiple(binaryBitmap, decodeHints);
@@ -96,13 +103,58 @@ public class QRCodeUtil {
         // String qrCodeData = FileUtils.getFileContent(new File("test.csv"));
         // createQRCode(qrCodeData, filePath, 300, 300);
         // String filePath = "single.png";
-        try{
-            String filePath = "multi.png";
-            String result = multiDecoder(filePath);
-            System.out.print(result);
-        }catch (Exception e){
-            e.printStackTrace();
+//        try{
+//            String filePath = "images/19.jpg";
+//            String result = multiDecoder(filePath);
+//            System.out.print(result);
+//            System.out.print("found");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            System.out.print("not found");
+//        }
+//        System.out.println("QR Code image created successfully!");
+        String folderPath = "images";
+        File folder = new File(folderPath);
+        File[]  fileList = folder.listFiles();
+        List<File> fileArray = Arrays.asList(fileList);
+        Collections.sort(fileArray, new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                int str1 = Integer.parseInt(o1.getName().split("\\.")[0]);
+                int str2 = Integer.parseInt(o2.getName().split("\\.")[0]);
+                if(str1 > str2){
+                    return 1;
+                }else if (str1 < str2){
+                    return -1;
+                }else {
+                    return  0;
+                }
+            }
+        });
+        String result = "";
+        String temp = "";
+        for (File file : fileArray){
+            if (file.isFile()){
+                System.out.print(file.getName());
+                String current = "";
+                try{
+                    current = multiDecoder(file.getPath());
+                } catch (FormatException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ChecksumException e) {
+                    e.printStackTrace();
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+                System.out.print(current+"_text");
+                if(!temp.equals(current)){
+                    temp = current;
+                    result += current;
+                }
+            }
         }
-        System.out.println("QR Code image created successfully!");
+        System.out.print(result);
     }
 }
