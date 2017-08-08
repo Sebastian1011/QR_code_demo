@@ -52,9 +52,9 @@ public class ZipUtil {
     }
 
     public static void main(String[] args) throws IOException, WriterException {
-        FileUtils fileUtils = new FileUtils();
+        FileUtil fileUtil = new FileUtil();
         File file = new File("large.csv");
-        String qrCodeData = FileUtils.getFileContent(new File("large.csv"));
+        String qrCodeData = FileUtil.getFileContent(new File("large.csv"));
         String encoded = ZipUtil.encode(qrCodeData);
         String decode = ZipUtil.decode(encoded);
         System.out.print(qrCodeData.getBytes().length);

@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Created by zmzhang2 on 8/5/17.
  */
-public class FileUtils {
+public class FileUtil {
     public static String getFilePath(String fileName){
         File file = new File(fileName);
         return file.getPath();

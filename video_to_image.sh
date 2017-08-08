@@ -1,3 +1,3 @@
 #! /bin/bash
-
-ffmpeg -i IMG_5418.MOV -r 20 images/%d.jpg
+rm ./images/*.jpg
+ffmpeg -i IMG_5471.MOV -r 20 images/%d.jpg

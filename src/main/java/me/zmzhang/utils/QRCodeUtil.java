@@ -10,6 +10,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.multi.qrcode.QRCodeMultiReader;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.apache.commons.io.FileUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -98,7 +99,7 @@ public class QRCodeUtil {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException {
         // String filePath = "QRCode.png";
         // String qrCodeData = FileUtils.getFileContent(new File("test.csv"));
         // createQRCode(qrCodeData, filePath, 300, 300);
@@ -113,6 +114,9 @@ public class QRCodeUtil {
 //            System.out.print("not found");
 //        }
 //        System.out.println("QR Code image created successfully!");
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec("./video_to_image.sh");
+        pr.waitFor();
         String folderPath = "images";
         File folder = new File(folderPath);
         File[]  fileList = folder.listFiles();
@@ -156,5 +160,6 @@ public class QRCodeUtil {
             }
         }
         System.out.print(result);
+        FileUtils.writeStringToFile(new File("5471.txt"), result);
     }
 }
